@@ -1,0 +1,72 @@
+[
+    {
+        "marca": "Tesla",
+        "modelo": "Cyberquad",
+        "precio": 1700,
+        "img": "https://o.remove.bg/downloads/30ada434-1467-4d04-a71a-c0f615d59eac/tesla-cyberquad-removebg-preview.png",
+        "webpage": "https://cyberquadsales.com/"
+    },
+    {
+        "marca": "Ferrari",
+        "modelo": "812 Superfast",
+        "precio": 249.724,
+        "img": "https://o.remove.bg/downloads/32d4020f-1d70-495f-b720-cb340903d95f/WMIOH4XJ7JGKNITVQHE2TLE5ME-removebg-preview.png",
+        "webpage": "https://www.ferrari.com/es-ES/auto/812-superfast"
+    },
+    {
+        "marca": "Audi",
+        "modelo": "R8 Spyder",
+        "precio": 3519900,
+        "img": "https://o.remove.bg/downloads/0f453fe0-3a6f-4cfe-a8e8-6d88a8e15dd8/WHITE_cc_2023AUC170041_01_1280_0EPA-removebg-preview.png",
+        "webpage": "https://www.audi.es/es/web/es/modelos/r8/r8-spyder-v10-performance-quattro.html"
+    },
+    {
+        "marca": "Aston Martin",
+        "modelo": "Valkyrie",
+        "precio": 3000000,
+        "img": "https://o.remove.bg/downloads/a310265a-e99d-4834-8788-ebad624f6ad3/1366_2000-removebg-preview.png",
+        "webpage": "https://www.diariomotor.com/coche/aston-martin-valkyrie/"
+    },
+    {
+        "marca": "McLaren",
+        "modelo": "Solus GT",
+        "precio": 3100000,
+        "img": "https://o.remove.bg/downloads/1a52bf4a-334a-4aa8-b7aa-aa054e763256/img__27_-removebg-preview.png",
+        "webpage": "https://cars.mclaren.com/en/mclaren-solus-gt"
+    },
+    {
+        "marca": "Bugatti",
+        "modelo": "Chiron Pur Sport",
+        "precio": 3200000,
+        "img": "https://o.remove.bg/downloads/b871b2b2-788d-4237-ab44-7a254dfe502a/bugati-chiron-pur-sport-in-london-removebg-preview.png",
+        "webpage": "https://www.bugatti.com/discover-chiron-pur-sport/"
+    },
+    {
+        "marca": "Lamborghini ",
+        "modelo": "Sián",
+        "precio": 3300000,
+        "img": "https://o.remove.bg/downloads/52d74976-3612-45ad-881a-396d28648263/sian_rds_05-removebg-preview.png",
+        "webpage": "https://www.lamborghini.com/es-en/modelos/serie-limitada/sian-fkp-37"
+    },
+    {
+        "marca": "Koenigsegg",
+        "modelo": "CCXR Trevita",
+        "precio": 4300000,
+        "img": "https://o.remove.bg/downloads/c5154886-33ac-4cef-8553-df8b3f3d3a33/koenigsegg-ccxr-trevita-4-1604044668-removebg-preview.png",
+        "webpage": "https://www.koenigsegg.com/model/ccxr-trevita"
+    },
+    {
+        "marca": "Maserati",
+        "modelo": "MC20 Cielo",
+        "precio": 300.500,
+        "img": "https://o.remove.bg/downloads/08b15529-4699-4a2b-bb45-5784e1b8b88e/Maserati_MC20_CIELO_HERO-2000x1024-removebg-preview.png",
+        "webpage": "https://www.maserati.com/global/en/models/mc20-cielo"
+    },
+    {
+        "marca": "Rolls Royce",
+        "modelo": "Sweptail",
+        "precio": 11500000,
+        "img": "https://o.remove.bg/downloads/d7412510-9518-4343-9419-dc34cf2ec91c/p90180039-removebg-preview.png",
+        "webpage": "https://www.rolls-roycemotorcars.com/en_GB/inspiring-greatness/objects/coachbuild-sweptail.html"
+    }
+]

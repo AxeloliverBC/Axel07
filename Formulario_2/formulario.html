@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+
+    <center>
+        <link rel="stylesheet" href="estilos.css" class="rel">
+</head>
+
+<body bgcolor="red">
+
+    <form action="" id="formulario" class="mostrar">
+        <h3> Formulario</h3>
+        <img src="imagenes/desconocido.png" alt="Usuario">
+        <input type="email" placeholder="Escribe tu email" id="emailRegistrate">
+        <br><br>
+        <input type="password" placeholder="Escribe tu password" id="passwordRegistrate">
+        <br><br>
+        <input type="button" value="Registrar" id="btnRegistrar">
+        <input type="button" value="Iniciar Sesión" id="btnIniciarSesion">
+        <div>
+            <img class="imagen1" src="imagenes/google.png" alt="Botón Google" id="btnGoogle">
+            <img class="imagen2" src="imagenes/facebook.png" alt="Botón Facebook" id="btnFacebook">
+        </div>
+    </form>
+    </center>
+
+    <center>
+        <div class="container ocultar" id="contenidoDeLaWeb">
+            <input type="button" value="Cerrar Sesión" id="btnCerrarSesion">
+            <marquee direction="down" width="400" height="40" behavior="alternate">
+                <marquee behavior="alternate">
+                    <h1>Bienvenid@ a mi web</h1>
+                </marquee>
+            </marquee>
+            <img class="imagen3" src="imagenes/car.png" align="right">
+            <div class="resultado" id="resultado"></div>
+            <div id="comentarios" align="left">
+                <h2>Escribe tus comentarios</h2>
+                <input type="text" placeholder="Escribe el titulo" id="txttitulo">
+                <br>
+                <input type="text" placeholder="Escribre la descripcion" id="txtdescripcion">
+                <br>
+                <input type="button" value="Publicar" id="btnPublicar">
+            </div>
+        </div>
+    </center>
+
+
+
+    <!-- Insertar el link de Firebase -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+
+
+    <script>
+
+        // Pegar aquí tu apikey o CDN de firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCJO3uQa_xQHYTT1sQRpNWd12WdXI8T2fk",
+            authDomain: "pagina-web-6d1ef.firebaseapp.com",
+            projectId: "pagina-web-6d1ef",
+            storageBucket: "pagina-web-6d1ef.appspot.com",
+            messagingSenderId: "69330632782",
+            appId: "1:69330632782:web:91327880da099995eac31f"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Llamando al Dom o al HTML
+        const btnRegistrar = document.getElementById('btnRegistrar');
+        const btnIniciarSesion = document.getElementById('btnIniciarSesion');
+        const formulario = document.getElementById('formulario');
+        const contenidoDeLaWeb = document.getElementById('contenidoDeLaWeb');
+        const btnGoogle = document.getElementById('btnGoogle');
+        const btnFacebook = document.getElementById('btnFacebook');
+
+        // Función registrar
+        btnRegistrar.addEventListener('click', () => {
+            let email = document.getElementById('emailRegistrate').value;
+            let password = document.getElementById('passwordRegistrate').value;
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    var user = userCredential.user;
+                    console.log("Inicio de sesión correcto");
+                    cargarJSON()
+                    formulario.classList.replace('mostrar', 'ocultar');
+                    contenidoDeLaWeb.classList.replace('ocultar', 'mostrar');
+                    // ...
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    alert(errorMessage);
+                    console.log(errorMessage);
+                    // ..
+                });
+        })
+
+        // Función Iniciar sesión
+        btnIniciarSesion.addEventListener('click', () => {
+            let email = document.getElementById('emailRegistrate').value;
+            let password = document.getElementById('passwordRegistrate').value;
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    var user = userCredential.user;
+                    formulario.classList.replace('mostrar', 'ocultar');
+                    cargarJSON()
+                    contenidoDeLaWeb.classList.replace('ocultar', 'mostrar');
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        })
+
+
+        // Función Cerrar sesión
+        btnCerrarSesion.addEventListener('click', () => {
+            firebase.auth().signOut().then(() => {
+                // Sign-out successful.
+                console.log("Ha cerrado sesión correctamente");
+                formulario.classList.replace('ocultar', 'mostrar');
+                contenidoDeLaWeb.classList.replace('mostrar', 'ocultar');
+
+                document.getElementById("emailRegistrate").value = "";
+                document.getElementById("passwordRegistrate").value = "";
+            }).catch((error) => {
+                // An error happened.
+            });
+        })
+
+        // Función estado activo o inactivo
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                var uid = user.uid;
+                formulario.classList.replace('mostrar', 'ocultar');
+                cargarJSON()
+                contenidoDeLaWeb.classList.replace('ocultar', 'mostrar');
+                // ...
+            } else {
+                // User is signed out
+                formulario.classList.replace('ocultar', 'mostrar');
+                contenidoDeLaWeb.classList.replace('mostrar', 'ocultar');
+            }
+        });
+
+        //funcion del boton Google
+        btnGoogle.addEventListener('click', () => {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth()
+                .signInWithPopup(provider)
+                .then((result) => {
+                    var user = result.user;
+                    console.log("Login con Google correcto");
+                    cargarJSON()
+                }).catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    alert(errorMessage)
+                    console.log("Error de inicio de sesion con google");
+                });
+
+        })
+
+        //funcion del boton Facebook
+        btnFacebook.addEventListener('click', () => {
+            var provider = new firebase.auth.FacebookAuthProvider();
+            firebase
+                .auth()
+                .signInWithPopup(provider)
+                .then((result) => {
+                    var user = result.user;
+                    console.log("Login con Facebook correcto");
+                    cargarJSON()
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    alert(errorMessage)
+                    console.log("Error de inicio de sesion con facebook");
+                });
+        })
+
+        //funcion para llamar al JSON
+
+        function cargarJSON() {
+            fetch("data.json")
+                .then(function (res) {
+                    return res.json();
+                })
+                .then((data) => {
+                    console.log(data);
+                    let html = '';
+                    data.forEach((modelo) => {
+                        html += `
+        <div class="marca">
+          <p>  ${modelo.marca} </p>
+          <img src="${modelo.img}" width="50px" class="imgModelo">
+         
+          <strong> S/.${modelo.precio} </strong>
+          <a href="${modelo.webpage}" target="_blank"> Ver detalles </a>
+        </div>
+      `;
+                    })
+                    document.getElementById('resultado').innerHTML = html;
+                })
+        }
+
+
+    </script>
+
+</body>
+
+</html>
